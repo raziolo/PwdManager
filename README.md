@@ -10,7 +10,7 @@ to help you manage your **passwords**.
 * **Full Modularity** : Swap all the components (Access Keys, Dictionaries and Databases)
                          with just a command.                 
 * **Easy to use** : (and still fashionable) :red_circle::yellow_circle::large_blue_circle: colorful :red_circle::yellow_circle::large_blue_circle: command-line interface.
-* **No installation** nedded, just run it with Python 3.8> on your Terminal/Prompt.
+* **No installation needed**, just run it with Python 3.8> on your Terminal/Prompt.
 * **Multi Language** : Currently Italian and English are supported but several languages can be easily added.
 * **Full Open-Source**
 
