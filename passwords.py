@@ -705,7 +705,6 @@ def main():
                 Big.cloudupload()
             elif comando.__contains__("del"):
                 key = comando.split()[1]
-                print(key)
                 Big.delete(key = key)
             elif comando.__contains__("mod"):
                 key = comando.split()[1]
