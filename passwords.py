@@ -356,7 +356,6 @@ class BigFile:
                 for item in results:
                     self.passwords.remove(item)
                 self.encrypt()
-                breakpoint
             else:
                 pass
         elif len(results) == 1:
