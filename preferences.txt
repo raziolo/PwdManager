@@ -1,0 +1,3 @@
+lang = en
+gui = 0
+fast_load = 1
