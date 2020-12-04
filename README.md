@@ -1,4 +1,4 @@
-# PwdManager
+# AwESome Password Manager 1.0
 
 ## What it is
 This is one of my first projects in Python.
