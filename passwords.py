@@ -121,7 +121,7 @@ def langs(category, code):
         3:  [["mod", "Modifica una Password, digita mod help per una spiegazione dettagliata."],["del","ELimina una Password, del help per istruzioni dettagliate. "],["__clean_db__", "Elimina tutte le Password dal Database. Nota bene: potrebbe essere necessario eseguire il comando più di una volta."],["exit", "Ritorna al menù principale"]],
         4:  [["mod", "Change a Password, type mod help for detailed instructions"],["del", "Delete a password, del help for detailed instructions. "],["__clean_db__", "Deletes all the passwords in the Database. Note: It may be necessary to execute the command a couple times."], ["exit", "Go back to the menù."]],
         5: [["new", "Genera una nuova key sicura"],["show", "Mostra la key collegata al db in uso"], ["save","Salva la key in un file key.key"]],
-        6: [[["new", "Create a new key"],["show", "Shows the currently db-linked key"], ["save","Saves the key in a key.key file"]]]
+        6: [["new", "Create a new key"],["show", "Shows the currently db-linked key"], ["save","Saves the key in a key.key file"]]
 
     }
     if lang == "it":
@@ -522,9 +522,8 @@ class BigFile:
                 print(Big.savekey())
             elif user == "help":
                 m = langs("keys_help",0)
-                for line in m:
-                    for command in line:
-                        print(fg.red + str(command[0]) + fg.norm + " : " + fg.yellow + str(command[1]) + fg.norm)
+                for command in m:
+                    print(fg.red + str(command[0]) + fg.norm + " : " + fg.yellow + str(command[1]) + fg.norm)
             else:
                 break
 
