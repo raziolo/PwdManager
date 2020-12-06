@@ -18,6 +18,7 @@ to help you manage your **passwords**.
 - [ ] OAuth Authentication For GDrive Upload Functionality (more services are gonna be covered too)
 - [ ] External dictionaries implementation
 - [ ] Having new ideas
+- [ ] Swappable Graphic Interface using tkinter
 
 
 ####
