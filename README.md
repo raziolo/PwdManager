@@ -5,6 +5,15 @@ This is one of my first projects in Python.
 Is a **password manager** that uses **Cryptography** library and a command-line interface
 to help you manage your **passwords**.
 
+## Requirements
+
+* Cryptography module, a very popular library for Cryptography.
+You can install it via:
+```
+pip install cryptography
+```
+
+
 ## Features
 * **Two-Level Encryption** : First Custom Made, Second AES-Based
 * **Full Modularity** : Swap all the components (Access Keys, Dictionaries and Databases)
