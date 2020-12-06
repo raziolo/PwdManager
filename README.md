@@ -8,6 +8,7 @@ to help you manage your **passwords**.
 ## Requirements
 
 * Cryptography module, a very popular library for Cryptography.
+
 You can install it via:
 ```
 pip install cryptography
