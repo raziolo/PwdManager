@@ -45,9 +45,10 @@ pip install pysimplegui
 - [ ] Having new new ideas
 - [ ] Bug Catching and fixing
 - [ ] PEP8 Compliance
+- [ ] Secure notes
 - [x] External dictionaries implementation
 - [x] Swappable Graphic Interface using ~~tkinter~~ PySimpleGui
-- [x] Having new ideas
+
 
 
 ####
