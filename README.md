@@ -46,6 +46,7 @@ pip install pysimplegui
 - [ ] Bug Catching and fixing
 - [ ] PEP8 Compliance
 - [ ] Secure notes
+- [ ] Rewriting CLI with Click
 - [x] External dictionaries implementation
 - [x] Swappable Graphic Interface using ~~tkinter~~ PySimpleGui
 
