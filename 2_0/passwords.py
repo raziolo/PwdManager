@@ -180,11 +180,12 @@ def toshow(nottoshow, showing = 7):
         return showing
 
 class BigFile:
-    def __init__(self, name, key, dictionary, passwords, encrypted):
+    def __init__(self, name, key, dictionary, passwords,notes, encrypted):
         self.name = name
         self.key = key
         self.dictionary = dictionary
         self.passwords = passwords
+        self.notes = notes
         self.encrypted = encrypted
 
 
@@ -218,7 +219,7 @@ class BigFile:
                     elif events == "Invio":
                         self.key = bytes(values[1].encode("utf-8"))
                         self.name = values[0][0]
-                        self.passwords, self.dictionary = self.Deconstruction(
+                        self.passwords, self.dictionary,self.notes = self.Deconstruction(
                             (self.decrypt(open(path_big_files + self.name, "r").read().encode("utf-8"))))
                         self.encrypted = False
                         root.close()
@@ -233,7 +234,7 @@ class BigFile:
                 try:
                     self.key = fast_load_key
                     self.name = "fastload.aesdb"
-                    self.passwords, self.dictionary = Big.Deconstruction(
+                    self.passwords, self.dictionary,self.notes = Big.Deconstruction(
                         (Big.decrypt(open(path_big_files + self.name, "r").read().encode("utf-8"))))
                     self.encrypted = False
                     print(fg.red + "FASTLOADFASTLOADFASTLOAD" + fg.norm)
@@ -267,7 +268,7 @@ class BigFile:
                                 print(langs("err", 3))
                                 main()
                             self.key = getinputnoerrors("Key: ").encode("utf-8")
-                            self.passwords, self.dictionary = Big.Deconstruction(
+                            self.passwords, self.dictionary,self.notes = Big.Deconstruction(
                                 (Big.decrypt(open(path_big_files + self.name, "r").read().encode("utf-8"))))
                             self.encrypted = False
                             print(langs("p", 35))
@@ -378,21 +379,24 @@ class BigFile:
     ### END OF WIP FUNCTION ###
 
     def Construction(self):
-        Constructed = []
-        for item in self.passwords:
-            Constructed.append(item)
-        Constructed.append("################")
-        Constructed.append(str(self.dictionary))
+
+        Constructed = [self.passwords,self.dictionary,self.notes]
+        print(Constructed)
+        Constructed = json.dumps(Constructed)
         return Constructed
 
     @staticmethod
     def Deconstruction(big_file):  # static method here for grouping purposes
-        import ast
-        out = ast.literal_eval(big_file)
-        a = out.index("################")
-        passwords = out[:a]
-        dictionary = eval(str(out[a + 1:][0]))
-        return passwords, dictionary
+        # OLD DECONSTRUCTION METHOD
+        #import ast
+        #out = ast.literal_eval(big_file)
+        #a = out.index("################")
+        #passwords = out[:a]
+        #dictionary = eval(str(out[a[0] + 1:][0]))
+        #notes = a[1]"
+        # NEW DECONSTRUCTION METHOD
+        passwords,dictionary,notes = json.loads(big_file)
+        return passwords, dictionary,notes
 
     def Migration(self, new_dict):
         old_dict = self.dictionary
@@ -714,7 +718,9 @@ class BigFile:
             print(fg.green + "Ok" + fg.norm)
             self.encrypt()
 
-Big = BigFile("", b'', 0, [], True)
+    def add_note(self,note):
+        self.notes.append(note)
+Big = BigFile("", b'', 0, [],[], True)
 
 
 def getinputnoerrors(prompt : str):
@@ -1188,6 +1194,11 @@ def main():
             elif comando.__contains__("mod"):
                 key = comando.split()[1]
                 Big.modpwd(key = key)
+            elif comando.__contains__("note"):
+                note = comando.split()[1]
+                Big.add_note(note)
+                print(Big.notes)
+                Big.encrypt()
         except ValueError:
             continue
 
@@ -1202,7 +1213,6 @@ def preferences(mode = "auto",default=False,save=False,*args):
             Big.renamedb("fastload.aesdb")
         else:
             prefs["key"] = ""
-
         file = open(path + "preferences.json", "w")
         file.write(json.dumps(prefs))
         print(fg.green + "saved..." + fg.norm)
