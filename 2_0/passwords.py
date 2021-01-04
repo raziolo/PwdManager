@@ -98,8 +98,7 @@ def langs(category, code):
         18: [fg.red + "Key attuale: " + fg.yellow + toshow(Big.key.decode("utf-8")) + fg.norm,
              fg.red + "Actual key: " + fg.yellow + toshow(Big.key.decode("utf-8")) + fg.norm],
         19: ["\"help\" per una lista comandi", "\"help\" for a command list"],
-        20: [
-            "Vuoi sostituire questa key alla key attuale? N.B. Tutti i dati verranno migrate ma è consigliabile fare un backup del file \".aesdb\" : " + Big.name,
+        20: ["Vuoi sostituire questa key alla key attuale? N.B. Tutti i dati verranno migrate ma è consigliabile fare un backup del file \".aesdb\" : " + Big.name,
             "Would you like to swap the actual key? N.B. All the data will be migrated but it's higly reccomended to backup the \".aesdb\" file: " + Big.name],
         21: ["Tutti i caratteri sono supportati.",
              "All the characters are supported"],
@@ -381,7 +380,6 @@ class BigFile:
     def Construction(self):
 
         Constructed = [self.passwords,self.dictionary,self.notes]
-        print(Constructed)
         Constructed = json.dumps(Constructed)
         return Constructed
 
@@ -718,8 +716,11 @@ class BigFile:
             print(fg.green + "Ok" + fg.norm)
             self.encrypt()
 
-    def add_note(self,note):
+    def add_note(self,hints,note):
+        note = [hints,note]
         self.notes.append(note)
+        Big.encrypt()
+
 Big = BigFile("", b'', 0, [],[], True)
 
 
@@ -850,7 +851,6 @@ def window_pwds():
     while True:
         try:
             event, values = window_pwd.read()
-            print(event,values)
         except KeyError:
             sg.Popup("No Passwords",auto_close=True,auto_close_duration=1,font=font20)
             break
@@ -937,30 +937,36 @@ def win_new_pwd():
               [sg.Text("Username")], [sg.InputText()],
               [sg.Button("OK", key="ok",auto_size_button=True), sg.Button("Add Another",auto_size_button=True, key="another",)]]
     window_new = sg.Window('Password Manager - New Password', layout, size=(300,400),resizable=True, font=font15)
-    events, values = window_new.read()
-    if events == sg.WIN_CLOSED:
+    while True:
+        events, values = window_new.read()
+        if events == sg.WIN_CLOSED:
+            break
+        elif events == "ok":
+            if not values[0]:
+                Big.add_password(pwd=secure_pass(randint(9, 13)), site=values[1], username=values[2])
+                sleep(0.1)
+                window_new.close()
+            else:
+                Big.add_password(pwd=values[0], site=values[1], username=values[2])
+                sleep(0.2)
+                window_new.close()
+            break
+        elif events ==  "another":
+            if not values[0]:
+                Big.add_password(pwd=secure_pass(randint(9, 13)), site=values[1], username=values[2])
+                sleep(0.1)
+                window_new[0].update("")
+                window_new[1].update("")
+                window_new[2].update("")
+                continue
+            else:
+                Big.add_password(pwd=values[0], site=values[1], username=values[2])
+                sleep(0.2)
+                window_new[0].update("")
+                window_new[1].update("")
+                window_new[2].update("")
+                continue
         return
-    elif events == "ok":
-        if not values[0]:
-            Big.add_password(pwd=secure_pass(randint(9, 13)), site=values[1], username=values[2])
-            sleep(0.1)
-            window_new.close()
-        else:
-            Big.add_password(pwd=values[0], site=values[1], username=values[2])
-            sleep(0.2)
-            window_new.close()
-    elif events ==  "another":
-        if not values[0]:
-            Big.add_password(pwd=secure_pass(randint(9, 13)), site=values[1], username=values[2])
-            sleep(0.1)
-            window_new.close()
-            return win_new_pwd()
-        else:
-            Big.add_password(pwd=values[0], site=values[1], username=values[2])
-            sleep(0.2)
-            window_new.close()
-            return win_new_pwd
-
 
 def wind_custom_dictionary():
     layout_custom = [
@@ -1011,6 +1017,64 @@ def window_get_choice(t):
         win_choice.close()
         return False
 
+def win_new_note():
+    layout = [
+        [sg.Text("Hints separated by a comma\nes: a,b,c")],
+        [sg.InputText("",key="hints")],
+        [sg.Text("Note Text: ")],
+        [sg.InputText("", key="notetext")],
+        [sg.Button("Add",key="add"),sg.Button("Add Another",key="another")],
+    ]
+    win = sg.Window("Add note",layout=layout)
+
+    while True:
+        events, values = win.read()
+        print(events,values)
+        if events == sg.WIN_CLOSED:
+            break
+        if events == "add":
+            hints = values["hints"].split(",")
+            print(hints)
+            notetext = values["notetext"]
+            Big.add_note(hints, notetext)
+            events = sg.WIN_CLOSED
+            win.close()
+            break
+        if events == "another":
+            hints = values["hints"].split(",")
+            notetext = values["notetext"]
+            Big.add_note(hints, notetext)
+            win["hints"].update("")
+            win["notetext"].update("")
+
+def window_notes():
+    def getvals():
+        vals=[]
+        def beautification(hints):
+            if len(hints):
+        for item in Big.notes:
+
+            hints = ",".join(item[0])
+            vals.append([hints,item[1]])
+        return vals
+    data = getvals()
+    head = ["hints","note"]
+    layout = [[sg.Table(values=data, headings=head,  # col_widths=[10 for i in range(len(data))],
+                        background_color="black",
+                        auto_size_columns=True,
+                        justification='left',
+                        num_rows=len(data),
+                        alternating_row_color='black',
+                        key='-TABLE-',
+                        row_height=40,
+                        )]
+              ]
+    window_dict = sg.Window('Password Manager - Dictionaries', layout, resizable=True, font=font25)
+
+    while True:
+        event, values = window_dict.read()
+        if event == sg.WIN_CLOSED:
+            break
 
 def main():
     global lang,gui,fast_load,fast_load_key
@@ -1034,7 +1098,8 @@ def main():
                       [sg.Button("Visualize", key="gui_dicts"),sg.Button("Save",key="savedict"),sg.Button("Import",key="import_dict"),sg.Button("New",key="newdict"),sg.Checkbox("Custom Build",key="custom")],
                       [sg.Text("--- PASSWORD OPERATIONS ---")],
                       [sg.Button("Passwords",key="PWDS_"),sg.Button("Add",key="newpwd"),sg.Button("Secure Pass",key="securepass")],
-                      [sg.Text("- -------------- -")],
+                      [sg.Text("--- NOTES OPERATIONS ---")],
+                      [sg.Button("Add",key="newnote"),sg.Button("Visualize",key="allnotes")],
                       [sg.Button("EXIT",key="exit"),sg.Text("Preferences"),sg.Checkbox("Gui: ",default=bool(gui),key="gui",enable_events=True),sg.Checkbox("Fast-Load: ",default=bool(fast_load),key="fast_load",enable_events=True)]
                       ]
             root = sg.Window("PWD Manager 1.0",layout,font=font20,icon=path + "ico.png")
@@ -1140,6 +1205,13 @@ def main():
                 elif events == "securepass":
                         one_shot_copy(secure_pass(randint(10, 14)), "Password")
 
+                ### NOTES FUNCTIONS ###
+
+                elif events == "newnote":
+                    win_new_note()
+                elif events == "allnotes":
+                    window_notes()
+
                 try:
                     if values["gui"]:
                         if gui:
@@ -1197,7 +1269,6 @@ def main():
             elif comando.__contains__("note"):
                 note = comando.split()[1]
                 Big.add_note(note)
-                print(Big.notes)
                 Big.encrypt()
         except ValueError:
             continue
