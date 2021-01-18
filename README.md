@@ -1,15 +1,23 @@
-# AwESome Password Manager 2.0
+# AwESome Password Manager ~~2.0~~ 2.1
 
-### !!! Now with a GUI !!!
+### !!! Now with a GUI and (2.1) GDrive support !!!
 
 ## What it is now
 The Command-Line part has not changed too much. 
 
-I've just made some adjustments to the functions and also several optimization, also I have discovered PEP8 Compliance so the code will be soon PEP8 compliant.  
+I've just made some adjustments to the functions and also several optimization, also I have discovered PEP8 Compliance ~~so the code will be soon PEP8 compliant.~~
+
+(2.1) **The code is now (a lot more) PEP8 compliant..
 
 The GUI is very easy-to-use and it has all the features of the CLI.  
 
-OAuth Authentication turned to be more difficult than I tought due to problems with Google trusting my application, but maybe I will find a workaround. ;)
+~~OAuth Authentication turned to be more difficult than I tought due to problems with Google trusting my application, but maybe I will find a workaround. ;)~~
+
+(2.1) **I have managed to find a solution for OAuth2 and I discovered this module PyDrive that is simple and easy to use, however it requires some you to create an application for you GDrive account, details in the the program.**
+
+(2.1) **I have added a pretty basic note interface both for the CLI and the GUI.**
+
+(2.1) **I divided the code into 4 files so it is more readable and also now it should be a lot more PEP8-friendly if you don't count the 124 chars limit rule LOL**
 
 Thank you for reading this far, below you can find all the infos about the program, this space is (for the moment) intended as a journal or changelog or maybe just a what-am-I-learning-and-doing-about-code-diary.
 
@@ -19,17 +27,21 @@ See you at 3.0!
 
 * Cryptography module, a very popular library for Cryptography.
 * PySimpleGui module, a very popular library for creating powerful GUI interfaces.
+* PyDrive module, GDrive OAuth2 library used for authentication and managing files.
 
 You can install them via:
 ```
 pip install cryptography
 pip install pysimplegui
+pip install pydrive
 ```
 
 ## Features
 
 ### New Features
 * **PySimpleGui** based **GUI**
+* **GDrive Database Upload**
+* **Secure Notes**
 
 ### Old Features
 * **Two-Level Encryption** : First Custom Made, Second AES-Based
@@ -41,11 +53,11 @@ pip install pysimplegui
 * **Fully Open-Source**
 
 ## Currently Working on
-- [ ] OAuth Authentication For GDrive Upload Functionality (more services are gonna be covered too)
+- [x] OAuth Authentication For GDrive Upload Functionality (more services are gonna be covered too)
 - [ ] Having new new ideas
-- [ ] Bug Catching and fixing
-- [ ] PEP8 Compliance
-- [ ] Secure notes
+- [x] Bug Catching and fixing
+- [x] PEP8 Compliance
+- [x] Secure notes
 - [ ] Rewriting CLI with Click
 - [x] External dictionaries implementation
 - [x] Swappable Graphic Interface using ~~tkinter~~ PySimpleGui
