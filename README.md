@@ -17,7 +17,7 @@ The GUI is very easy-to-use and it has all the features of the CLI.
 
 (2.1) **I have added a pretty basic note interface both for the CLI and the GUI.**
 
-(2.1) **I divided the code into 4 files so it is more readable and also now it should be a lot more PEP8-friendly if you don't count the 124 chars limit rule LOL**
+(2.1) **I divided the code into 5 files so it is more readable and also now it should be a lot more PEP8-friendly if you don't count the 124 chars limit rule LOL**
 
 Thank you for reading this far, below you can find all the infos about the program, this space is (for the moment) intended as a journal or changelog or maybe just a what-am-I-learning-and-doing-about-code-diary.
 
