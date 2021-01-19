@@ -4,7 +4,7 @@
 
 ## Screenshots
 <details>
-  <summary>Screenshots</summary>
+  <summary>GUI and CLI</summary>
   
   
 **GUI INTERFACE**
