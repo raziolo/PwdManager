@@ -2,6 +2,17 @@
 
 ### !!! Now with a GUI and (2.1) GDrive support !!!
 
+## Screenshots
+
+**GUI INTERFACE**
+
+![image](https://user-images.githubusercontent.com/58889881/105012144-1ca54f00-5a3e-11eb-81bc-3623b510d5bb.png)
+
+**C-LINE INTERFACE**
+
+
+![image](https://user-images.githubusercontent.com/58889881/105012124-12835080-5a3e-11eb-9117-7734e2aabadf.png) 
+
 ## What it is now
 The Command-Line part has not changed too much. 
 
