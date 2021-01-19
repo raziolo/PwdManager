@@ -75,7 +75,6 @@ pip install pydrive
 - [x] Bug Catching and fixing
 - [x] PEP8 Compliance
 - [x] Secure notes
-- [ ] Rewriting CLI with Click
 - [x] External dictionaries implementation
 - [x] Swappable Graphic Interface using ~~tkinter~~ PySimpleGui
 
