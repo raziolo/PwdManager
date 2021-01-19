@@ -51,8 +51,8 @@ pip install pydrive
 
 ### New Features
 * **PySimpleGui** based **GUI**
-* **GDrive Database Upload**
-* **Secure Notes**
+* (2.1) **GDrive Database Upload**
+* (2.1) **Secure Notes**
 
 ### Old Features
 * **Two-Level Encryption** : First Custom Made, Second AES-Based
