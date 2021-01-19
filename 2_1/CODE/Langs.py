@@ -90,8 +90,9 @@ def langs(category, code,name="",key=b""):
     COMMANDS = {
         # HELP ITALIAN
         1: [["add", "Aggiungi password"], ["dicts", "Crea/Modifica Dizionario"], ["keys", "Crea/Modifica Keys"],
-            ["mod \"key_identificativa\"", "Modifica una password"],
-            ["del \"key_identificativa\"", "Elimina una password"],
+            ["mod (pwd/username/URL/)", "Modifica una password"],
+            ["del (pwd/username/URL/)", "Elimina una password"],
+            ["print (pwd/username/URL)", fg.yellow + "Stampa una password la cui key coincide con quella inserita"],
             ["__clean_db__","Elimina tutte le Password dal Database."],
             ["printall " + fg.purple + "-p : passwords, -d : dizionario Firstlevel" + fg.norm,
              "Stampa IN CHIARO in base agli argomenti dichiarati.\nper nascondere le password in chiaro aggiungi " + fg.purple + "\"-h\"" + fg.norm],
@@ -103,8 +104,9 @@ def langs(category, code,name="",key=b""):
         2: [["add", "Add a new password"], ["dicts", "Create/Modify Dictionaries"], ["keys", "Create/Modify Keys"],
             ["printall" + fg.purple + " -p : passwords, -d : Firstlevel dictionary" + fg.norm,
              "Prints IN CLEAR the declared arguments\nto hide the passwords use: " + fg.purple + "\"-h\"" + fg.norm],
-            ["mod \"key\"", "Modify a password"], ["del \"key\"", "Delete a password"],
-            ["print", ],
+            ["mod (pwd/username/site/)", "Modify a password"],
+            ["del (pwd/username/site/)", "Delete a password"],
+            ["print (pwd/username/site/)", fg.green + "Prints a password that matches the key" ],
             ["note", fg.green + " Creates a New Note, " + fg.purple + "-v" + fg.green + " Visualize All The Notes, " + fg.purple + "-d " + fg.green + "Delete a Note"],
             ["help", "Shows this prompt"], ["prefs", "Visualize and modify current preferences"],
             ["__clean_db__", "Deletes all the passwords in the Database."],
