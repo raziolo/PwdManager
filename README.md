@@ -18,7 +18,7 @@ The Command-Line part has not changed too much.
 
 I've just made some adjustments to the functions and also several optimization, also I have discovered PEP8 Compliance ~~so the code will be soon PEP8 compliant.~~
 
-(2.1) **The code is now (a lot more) PEP8 compliant..
+(2.1) **The code is now (a lot more) PEP8 compliant..**
 
 The GUI is very easy-to-use and it has all the features of the CLI.  
 
