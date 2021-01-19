@@ -193,7 +193,10 @@ class BigFile:
         file1.SetContentString(str(open(path_big_files + self.name, 'r').read()))
         try:
             file1.Upload()
-            print(langs("p",38))
+            if gui:
+                sg.Popup("Success",auto_close=True,auto_close_duration=2)
+            else:
+                print(langs("p",38))
         except InvalidConfigError:
             print(langs("err",8))
             print(langs("p",42))
@@ -577,7 +580,7 @@ def main():
                       [sg.Text("Current Dictionary: ",justification="left"),sg.Text(toshow(Big.dictionary["A"],5),justification="right",text_color="yellow",key="showdict")],
                       [sg.Text("Current key:     "),sg.Text(toshow(Big.key.decode("utf-8"),5),key="showkey",text_color="yellow",justification="right")],
                       [sg.Text("--- DB OPERATIONS ---")],
-                      [sg.Button("New",key="newdb"),sg.Button("Rename",key="rename"),sg.InputText(key="newname",size=(20,1))],
+                      [sg.Button("New",key="newdb"),sg.Button("Rename",key="rename"),sg.InputText(key="newname",size=(10,1)),sg.Button("Upload",key="upload")],
                       [sg.Text("--- KEY OPERATIONS ---")],
                       [sg.Button("Copy", key="copy_key"), sg.Button("Change", key="change_key"),sg.Button("Save",key="save_key")],
                       [sg.Text("--- DICTIONARY OPERATIONS ---")],
@@ -591,12 +594,13 @@ def main():
                       [sg.Text("-------------")],
                       [sg.Button("EXIT",key="exit"),sg.Text("Preferences"),sg.Checkbox("Gui: ",default=bool(gui),key="gui",enable_events=True),sg.Checkbox("Fast-Load: ",default=bool(fast_load),key="fast_load",enable_events=True)]
                       ]
-            root = sg.Window("PWD Manager 3.0",layout,font=font20,icon=path + "topicon.ico")
+            root = sg.Window("PWD Manager 2.1",layout,font=font20,icon=path + "ico.ico")
 
             ### FUNCTIONS ###
             ### CATEGORY: FUNCTION NAME: EVENT KEY
             ### DB: NEW DB: newdb
             ### DB: RENAME: rename
+            ### DB: UPLOAD: upload
             ### KEY: COPY: copy_key
             ### KEY: SAVE: save_key
             ### KEY: NEW: change_key
@@ -625,6 +629,9 @@ def main():
                     new = values["newname"] + ".aesdb"
                     Big.renamedb(new)
                     root["showdb"].update(Big.name)
+                elif events == "upload":
+                    Big.cloudupload()
+
 
                 ### KEY FUNCTIONS ###
                 elif events == "copy_key":
