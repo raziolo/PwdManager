@@ -2,7 +2,7 @@
 
 ### !!! Now with a GUI and (2.1) GDrive support !!!
 
-## Screenshots
+## Screenshots and GIFs
 <details>
   <summary>GUI and CLI</summary>
   
@@ -10,11 +10,19 @@
 **GUI**
 
 ![image](https://user-images.githubusercontent.com/58889881/105012144-1ca54f00-5a3e-11eb-81bc-3623b510d5bb.png)
+ 
+**ADDING A PASSWORD**
+
+![](https://media2.giphy.com/media/SOuQf4UodQ2j7TeK2L/giphy.gif)
+
+**MANAGING PASSWORDS**
+
+![](https://media2.giphy.com/media/DVJEcgsWr7pi2cbrAq/giphy.gif)
 
 **C-LINE**
 
-
 ![image](https://user-images.githubusercontent.com/58889881/105012124-12835080-5a3e-11eb-9117-7734e2aabadf.png) 
+
 
   
 </details>
