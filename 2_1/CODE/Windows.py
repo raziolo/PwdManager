@@ -338,10 +338,10 @@ def wind_get_choice(t, b1, b2):
     if events == sg.WIN_CLOSED:
         win_choice.close()
         return
-    if events == "Yes":
+    if events == b1:
         win_choice.close()
         return True
-    elif events == "No":
+    elif events == b2:
         win_choice.close()
         return False
 
