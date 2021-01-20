@@ -311,7 +311,7 @@ def wind_custom_dictionary(Big):
                     win_custom_dict["preview"].update(CRC__(password_base(int(values[0]))) + secure_hash(int(values[1])))
         if events == "ok":
             if values["custom_const"]:
-                new = new_dictionary(int(values[0]),values[1],values["custom_const"])
+                new = new_dictionary(len_hash=int(values[0]),custom_crc=values["custom_const"])
             else:
                 new = new_dictionary(values[0],(values[1]))
 
