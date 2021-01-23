@@ -38,7 +38,7 @@ The GUI is very easy-to-use and it has all the features of the CLI.
 
 ~~OAuth Authentication turned to be more difficult than I tought due to problems with Google trusting my application, but maybe I will find a workaround. ;)~~
 
-(2.1) **I have managed to find a solution for OAuth2 and I discovered this module PyDrive that is simple and easy to use, however it requires some you to create an application for you GDrive account, details in the the program.**
+(2.1) **I have managed to find a solution for OAuth2 and I discovered this module PyDrive that is simple and easy to use, however it requires you to create an application for you GDrive account, details in the the program.**
 
 (2.1) **I have added a pretty basic note interface both for the CLI and the GUI.**
 
