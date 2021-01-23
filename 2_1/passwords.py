@@ -1,4 +1,4 @@
-
+sys.path.extend(path+"CODE")
 from difflib import SequenceMatcher
 from cryptography.fernet import Fernet, InvalidToken
 from cryptography.exceptions import InvalidKey
@@ -14,7 +14,6 @@ import PySimpleGUI as sg
 from time import sleep
 import json,sys,webbrowser
 #os.system("color")
-sys.path.extend(path+"CODE")
 sg.theme("Dark Purple 4")
 font10 = ("Calibri",10)
 font15 = ("Calibri",20)
