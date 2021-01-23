@@ -95,12 +95,11 @@ class BigFile:
                                 self.name = file[1]
                             else:
                                 print(langs("err",3))
-                                main()
+                                return main()
                             self.key = getinputnoerrors("Key: ").encode("utf-8")
                             self.passwords, self.dictionary,self.notes = Big.Deconstruction(
                                 (Big.decrypt(open(path_big_files + self.name, "r").read().encode("utf-8"))))
                             self.encrypted = False
-
                             print(langs("p", 3))
         except FileNotFoundError:
             print(langs("err",7))
@@ -220,12 +219,12 @@ class BigFile:
     @staticmethod
     def Deconstruction(big_file):  # static method here for grouping purposes
         # OLD DECONSTRUCTION METHOD
-        #import ast
-        #out = ast.literal_eval(big_file)
-        #a = out.index("################")
-        #passwords = out[:a]
-        #dictionary = eval(str(out[a[0] + 1:][0]))
-        #notes = a[1]"
+        '''import ast
+        out = ast.literal_eval(big_file)
+        a = out.index("################")
+        passwords = out[:a]
+        dictionary = eval(str(out[a[0] + 1:][0]))
+        notes = a[1]"'''
         # NEW DECONSTRUCTION METHOD
         passwords,dictionary,notes = json.loads(big_file)
         return passwords, dictionary,notes
@@ -258,9 +257,9 @@ class BigFile:
             if single == value:
                 return plain_char
 
-    def fromfirstlevel(self, single):
+    def fromfirstlevel(self, single): # ASD1anbgASD1ahbg 
         result = ""
-        lungh_pezzo = len(self.dictionary["A"])
+        lungh_pezzo = len(self.dictionary["A"]) # ASD1adsv
         hashed = [single[i:i + lungh_pezzo] for i in range(0, len(single), lungh_pezzo)]
         for pezzo in hashed:
             pezzo = pezzo.rstrip()
@@ -717,7 +716,8 @@ def main():
 
                 elif events == "notes":
                     wind_notes(Big)
-
+                
+                ### PREFERENCES ###
                 try:
                     if values["gui"]:
                         if gui:
@@ -741,6 +741,7 @@ def main():
                         preferences(save=True)
                 except KeyError:
                     pass
+        ### CLI ###
         try:
             print(langs("p", 5) + fg.red + Big.name + fg.norm)
             print(langs("p",48))
