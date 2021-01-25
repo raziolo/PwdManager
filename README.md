@@ -61,6 +61,11 @@ pip install pysimplegui
 pip install pydrive
 ```
 
+or using the requirements.txt file:
+```
+pip install -r requirements.txt
+```
+
 ## Features
 
 ### New Features
